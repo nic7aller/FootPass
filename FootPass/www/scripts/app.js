@@ -1,4 +1,4 @@
-﻿var footpass = angular.module('fpApp', []);
+﻿var footpass = angular.module('fpApp', ['ngMaterial']);
 footpass.controller('fpCtrl', ['$scope', function ($scope) {
     $scope.input = document.getElementById('pac-input');
     $scope.searchBox = new google.maps.places.SearchBox($scope.input);
