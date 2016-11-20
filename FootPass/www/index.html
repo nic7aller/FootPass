@@ -4,12 +4,14 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         
         <!-- Angular --> 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-        
-        <!-- Bootstraps -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+
+        <!-- Bootstraps 
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        
+        -->
         <!-- Google Maps API -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6LJSD7jWZ78HxqWislLXAzncjSS2R-zM&libraries=places"></script>
         
@@ -61,25 +63,23 @@
                     font-weight: 300;
                 }
         </style>
-
+        <script src="scripts/app.js"></script>
         <title>FootPass</title>
     </head>
     <body ng-app="fpApp">
         <div id="page2" ng-controller="fpCtrl">
             <input ng-model="fpModel" ng-change="placesChanged()" id="pac-input" class="controls" type="text" placeholder="Search Box">
-            <md-content ng-repeat="place in locations  | orderBy : 'distance'">
-                <md-card>
-                    <md-card-title>
-                        <md-card-title-text class="md-headline">
-                            {{place.name}}
-                        </md-card-title-text>
-                        <md-card-title-text class="md-subhead">
-                            {{place.distance + " mi"}}
-                        </md-card-title-text>
-                    </md-card-title>
-                    <button ng-click="getItem(place.index)">Locate</button>
-                </md-card>
-            </md-content>
+            <md-list role="list" ng-repeat="place in locations | orderBy : 'distance'">
+                <md-list-item>
+                <md-card role="listitem" ng-click="getItem(place.index)" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                        <div class="md-button md-no-style md-ink-ripple" layout="row" layout-align="center center">
+                            <div class="md-no-style md-ink-ripple">
+                                <div class="md-list-item-inner" layout="row" layout-align="center center">{{place.name + ": " + place.distance + " mi" + "\n" + place.rating + "/5 Stars"}}</div>
+                            </div>
+                        </div>
+                    </md-card>
+                </md-list-item>
+            </md-list>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="scripts/platformOverrides.js"></script>

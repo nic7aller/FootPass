@@ -29,7 +29,7 @@ footpass.controller('fpCtrl', ['$scope', function ($scope) {
         $scope.$apply();
         console.log($scope.locations);
     }
-
+    
     $scope.getItem = function (index) {
         alert($scope.locations[index].name);
     }
@@ -52,3 +52,7 @@ footpass.controller('fpCtrl', ['$scope', function ($scope) {
         return d; // returns the distance in miles
     };
 }]);
+
+footpass.config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
+});
